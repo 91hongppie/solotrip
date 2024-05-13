@@ -16,12 +16,23 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@font-face {
+  font-family: 'PyeongChang-Bold';
+  font-style: normal;
+  src: url('/fonts/PyeongChangPeace-Bold.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'PyeongChang-Light';
+  font-style: normal;
+  src: url('/fonts/PyeongChangPeace-Light.otf') format('otf');
+}
+
+body {  
+  background-color: white;
+  overflow: hidden;
+}
+
+* {
+  font-family: Pretendard;
 }

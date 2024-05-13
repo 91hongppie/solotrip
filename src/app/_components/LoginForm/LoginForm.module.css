@@ -1,0 +1,51 @@
+.loginButton {
+    background-color: #3A5CF3;
+    color: white;
+    width: 100%;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+}
+
+.loginButtonContainer {
+    margin-top: 30px;
+}
+
+
+.userInfoForm {
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin-top: 191px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.userInfoInputContainer {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    color: #5F5F5F;
+}
+
+.userInfoInput {
+    padding: 16px 11px;
+    border: 1px solid #C7C7C7;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+}
+
+.errorMessage {
+    font-size: 12px;
+    color: red;
+}
+
+.errorMessageContainer {
+    height: 18px;
+}
