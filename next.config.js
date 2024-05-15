@@ -4,7 +4,7 @@ const nextConfig = {
         return [
             {
                 source: "/",
-                destination: "/main",
+                destination: "/mainPage",
                 permanent: true,
             },
         ];
@@ -16,6 +16,14 @@ const nextConfig = {
         });
 
         return config;
+    },
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "develop.cdn.solotrip.kr",
+            },
+        ],
     },
 }
 

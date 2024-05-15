@@ -18,6 +18,7 @@ const LoginForm = () => {
         register,
         handleSubmit,
         formState: { errors },
+        setFocus,
     } = useForm<InputField>({
         defaultValues: {
             email: '',
@@ -25,6 +26,7 @@ const LoginForm = () => {
         },
     });
     const [login] = useMutation(LOGIN, { client });
+    const emailInputRef = useRef<HTMLInputElement>(null);
     const onSubmit: SubmitHandler<InputField> = async (inputData) => {
         try {
             const email = inputData.email;
@@ -36,8 +38,7 @@ const LoginForm = () => {
         } catch (error: any) {
             if (error.message == '비밀번호가 올바르지 않습니다.') {
                 const result = await confirm({ message: '잘못된 로그인 정보입니다.', okMessage: '다시 확인하기' });
-                if (result) {
-                }
+                setFocus('email');
             }
         }
     };
@@ -47,7 +48,13 @@ const LoginForm = () => {
             <div>
                 <span className={styles.userInfoInputContainer}>이메일</span>
                 <div style={{ height: '8px' }} />
-                <input {...register('email', { required: true })} className={styles.userInfoInput} placeholder="email" />
+                <input
+                    {...register('email', { required: true })}
+                    className={styles.userInfoInput}
+                    // ref={emailInputRef}
+                    autoFocus
+                    placeholder="email"
+                />
 
                 <div className={styles.errorMessageContainer}>
                     {errors.email && <span className={styles.errorMessage}>Email is required</span>}

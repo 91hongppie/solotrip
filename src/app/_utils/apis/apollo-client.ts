@@ -1,4 +1,4 @@
-import { ApolloClient, InMemoryCache, gql, useMutation} from "@apollo/client";
+import { ApolloClient, InMemoryCache, gql, useMutation, useQuery} from "@apollo/client";
 
 
 const client = new ApolloClient({
@@ -14,6 +14,22 @@ export const LOGIN = gql`
         }
     }
 `;
+
+
+export const FETCH_SOLPLACE_LOG = (page: number) => {
+  return gql`query FetchSolplaceLogs($page: Int! = ${page}) {
+            fetchSolplaceLogs(page: $page) {
+              id
+              introduction
+              solplaceName
+              images
+              userId
+              createdAt
+              updatedAt
+              deletedAt
+            }
+          }`
+}
 
 
 export default client

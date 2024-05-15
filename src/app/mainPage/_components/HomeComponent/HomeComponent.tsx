@@ -1,5 +1,5 @@
 'use client';
-import styles from './home.module.css';
+import styles from './HomeComponent.module.css';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import HomeHead from '@/app/_components/HomeHeader/HomeHead';
 import { ApolloError, gql, useMutation } from '@apollo/client';
