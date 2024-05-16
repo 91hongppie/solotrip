@@ -1,0 +1,94 @@
+
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 20px 20px;
+}
+
+.inputTitle {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #5F5F5F;
+}
+
+.inputContainer {
+    border: 1px solid #3A5CF3;
+    padding: 11px 16px;
+    border-radius: 4px;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+}
+
+.input {
+    font-weight: 500;
+    font-size:  14px;
+    line-height:  22px;
+    width:  100%;
+}
+
+.warningContainer {
+    margin-top: 10px;
+    background-color:#F6F6F9;
+    padding: 16px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    font-weight:500;
+    line-height: 18px;
+    color: #5F5F5F;
+}
+
+.highlight {
+    color: #497CFF;
+}
+
+.addressSearchContainer {
+    border: 1px solid #C7C7C7;
+    padding: 13px 16px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.registerButton {
+    position: fixed;
+    bottom: 20px;
+    background-color:#3A5CF3;
+    right: 20px;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 13px 0;
+    border-radius: 8px;
+}
+
+.disableButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 13px 0;
+    border-radius: 8px;
+    background-color: #F2F2F2;
+}
+
+.buttonText {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    color: white;
+}
+
+.disableButtonText {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    color: #C7C7C7;
+}

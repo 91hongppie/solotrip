@@ -9,23 +9,24 @@ import styles from './mainPage.module.css';
 import { useEffect, useState } from 'react';
 import SolplaceComponent from './_components/SolplaceComponent/SolplaceComponent';
 import HomeComponent from './_components/HomeComponent/HomeComponent';
+import { currentTab } from '../_stores/userStore';
 
 type pageNum = 0 | 1;
 
 export default function MainPage() {
-    const [tabNum, setTabNum] = useState<pageNum>(0);
+    const { tab, setTab } = currentTab();
     const [isHome, setIsHome] = useState<boolean>(true);
 
     useEffect(() => {
-        setIsHome(tabNum == 0);
-    }, [tabNum]);
+        setIsHome(tab == 0);
+    }, [tab]);
 
     const homeClick = () => {
-        setTabNum(0);
+        setTab(0);
     };
 
     const solplaceClick = () => {
-        setTabNum(1);
+        setTab(1);
     };
 
     return (

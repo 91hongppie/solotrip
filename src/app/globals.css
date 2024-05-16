@@ -28,11 +28,38 @@
   src: url('/fonts/PyeongChangPeace-Light.otf') format('otf');
 }
 
+:root {
+  --vh: 100%;
+}
+
+html
 body {  
   background-color: white;
   overflow: hidden;
+  height: 100vh;
+  height: var(--vh);
 }
 
 * {
   font-family: Pretendard;
+}
+
+input[type="color"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+input,
+select:focus,
+textarea {
+  font-size: 16px;
 }

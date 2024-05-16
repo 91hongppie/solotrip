@@ -1,23 +1,27 @@
 'use client';
-import { SolplaceFetchData, currentPage, currentSolplaces } from '@/app/_stores/solplaceStore';
-import { currentUser } from '@/app/_stores/userStore';
+import { Solplace, SolplaceFetchData, currentNewSolplace, currentPage, currentSolplaces } from '@/app/_stores/solplaceStore';
+import { currentScroll, currentUser } from '@/app/_stores/userStore';
 import client, { FETCH_SOLPLACE_LOG } from '@/app/_utils/apis/apollo-client';
 import { useQuery } from '@apollo/client';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import _ from 'lodash';
 import styles from './SolplaceComponent.module.css';
 import LocationFlag from '@icon/location_flag.svg';
 import NewSolplaceButton from '@icon/new_solplace_button.svg';
 import { useRouter } from 'next/navigation';
+import { dataConvertor } from '@/app/_utils/data-convertor';
 
 const SolplaceComponent = (prop: any) => {
     const router = useRouter();
+    const { scroll, setScroll } = currentScroll();
+    const containerRef = useRef<HTMLDivElement>(null);
     const { user } = currentUser();
     const { page, setPage } = currentPage();
     const { solplaces, setSolplaces } = currentSolplaces();
     const [isFinish, setIsFinish] = useState(false);
-    const { data, error, loading, refetch } = useQuery(FETCH_SOLPLACE_LOG(page), {
+    const { setNewSolplace } = currentNewSolplace();
+    const { data, refetch } = useQuery(FETCH_SOLPLACE_LOG(page), {
         client,
         context: {
             headers: {
@@ -27,29 +31,24 @@ const SolplaceComponent = (prop: any) => {
     });
 
     useEffect(() => {
-        refetchData;
+        refetchData();
+        setNewSolplace({});
+        containerRef.current?.scrollTo(0, scroll);
     }, []);
 
     useEffect(() => {
         const fetchData = data?.fetchSolplaceLogs;
-        if (!fetchData?.length) {
+        const isLastPage = !fetchData?.length;
+        if (isLastPage) {
             setIsFinish(true);
         } else {
             const nextSolplaceLogs = fetchData.map((data: SolplaceFetchData) => {
-                return {
-                    id: data.id,
-                    userId: data.userId,
-                    introduction: data.introduction,
-                    solplaceName: data.solplaceName,
-                    images: JSON.parse(data.images),
-                    createdAt: new Date(data.createdAt),
-                    updatedAt: new Date(data.updatedAt),
-                    deletedAt: data.deletedAt ? new Date(data.deletedAt) : null,
-                };
+                return dataConvertor(data);
             });
             const merged = [...solplaces, ...nextSolplaceLogs];
             const unique = _.uniqBy(merged, 'id');
 
+            console.log(unique);
             setSolplaces(unique);
             setIsFinish(false);
         }
@@ -63,30 +62,54 @@ const SolplaceComponent = (prop: any) => {
     }, [page]);
 
     const refetchData = async () => {
-        const nextData = await refetch();
+        await refetch();
     };
 
     const nextPage = () => {
+        if (isFinish) {
+            return;
+        }
         setPage(page + 1);
     };
 
     const moveToReigstSolplace = () => {
+        saveScroll();
         if (user.accessToken) {
-            router.push('/registerSolplace');
+            router.push('/registerSolplaceLog');
         } else {
+            router.push('/reqLogin');
         }
     };
 
     const scrollHandling = _.debounce((e) => {
-        console.log(e.nativeEvent);
-    }, 100);
+        if (e.target.scrollTop + e.target.offsetHeight >= e.target.scrollHeight - 400) {
+            nextPage();
+        }
+        saveScroll();
+    }, 50);
+
+    const saveScroll = () => {
+        if (containerRef.current?.scrollTop) {
+            setScroll(containerRef.current?.scrollTop);
+        }
+    };
+
+    const moveUpdateSolplace = (index: number) => {
+        router.push(`/updateSolplaceLog?index=${index}`);
+    };
 
     return (
         <>
-            <div className={styles.gridContainer} onScroll={scrollHandling}>
+            <div className={styles.gridContainer} onScroll={scrollHandling} ref={containerRef}>
                 {solplaces.map((solplace, index) => {
                     return (
-                        <div key={`solplce_${index}`} className={styles.gridCellContainer}>
+                        <div
+                            key={`solplce_${index}`}
+                            className={styles.gridCellContainer}
+                            onClick={() => {
+                                moveUpdateSolplace(index);
+                            }}
+                        >
                             <Image
                                 src={solplace.images[0]}
                                 alt={solplace.solplaceName}
@@ -100,7 +123,9 @@ const SolplaceComponent = (prop: any) => {
                                 <div className={styles.solplaceIntroductionContainer}>{solplace.introduction}</div>
                                 <div className={styles.solplaceLocationContainer}>
                                     <LocationFlag width={12} height={12} />
-                                    <span>서울시</span>
+                                    <span>
+                                        {solplace?.gu ?? '관악구'}, {solplace?.si ?? '서울시'}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -108,22 +133,7 @@ const SolplaceComponent = (prop: any) => {
                 })}
             </div>
 
-            <button
-                type="button"
-                style={{
-                    position: 'fixed',
-                    width: '52px',
-                    height: '52px',
-                    bottom: '76px',
-                    right: '20px',
-                    backgroundColor: '#497CFF',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: '26px',
-                }}
-                onClick={moveToReigstSolplace}
-            >
+            <button type="button" className={styles.addSolplaceButton} onClick={moveToReigstSolplace}>
                 <NewSolplaceButton />
             </button>
         </>

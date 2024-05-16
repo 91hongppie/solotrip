@@ -50,6 +50,7 @@ const LoginForm = () => {
                 <div style={{ height: '8px' }} />
                 <input
                     {...register('email', { required: true })}
+                    type="email"
                     className={styles.userInfoInput}
                     // ref={emailInputRef}
                     autoFocus

@@ -21,6 +21,8 @@ export interface SolplaceFetchData {
     updatedAt: string
     createdAt: string
     deletedAt?: string
+    si?: string
+    gu?: string
 }
 
 export interface Solplace {
@@ -32,6 +34,8 @@ export interface Solplace {
     updatedAt: Date
     createdAt: Date
     deletedAt?: Date
+    si?: string
+    gu?: string
 }
 
 interface Solplaces {
@@ -42,4 +46,23 @@ interface Solplaces {
 export const currentSolplaces = create<Solplaces>(set => ({
     solplaces: [],
     setSolplaces: nextSolplaces => set({solplaces: nextSolplaces})
+}))
+
+
+export interface CreateSolplace {
+    images?: string[]
+    introduction?: string
+    solplaceName?: string
+}
+
+interface NewSolplace {
+    newSolplace: CreateSolplace,
+    setNewSolplace: (nextNewSolplace: CreateSolplace) => void
+}
+
+
+export const currentNewSolplace = create<NewSolplace>(set => ({
+    newSolplace: {},
+    setNewSolplace: nextNewSolplace => set({newSolplace: nextNewSolplace})
+
 }))

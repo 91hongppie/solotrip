@@ -4,7 +4,7 @@ const nextConfig = {
         return [
             {
                 source: "/",
-                destination: "/mainPage",
+                destination: "/main",
                 permanent: true,
             },
         ];
@@ -25,6 +25,10 @@ const nextConfig = {
             },
         ],
     },
+    experimental: {
+        scrollRestoration: true
+    }
+
 }
 
 module.exports = nextConfig

@@ -65,3 +65,16 @@
     display: flex;
     gap: 2px
 }
+
+.addSolplaceButton {
+    position: fixed;
+    width: 52px;
+    height: 52px;
+    bottom: 76px;
+    right: 20px;
+    background-color:  #497CFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 26px;
+}

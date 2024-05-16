@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './globals.css';
 import ConfirmContext from './_context/confirm/confirmContext';
 import Confirm from './_components/Confirm/Confirm';
@@ -9,6 +9,7 @@ type ConfirmState = {
     okMessage: string;
     onClickOK: () => void;
 };
+let vh = 0;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     const [state, setState] = useState<ConfirmState>();

@@ -1,0 +1,173 @@
+
+.bodyContainer {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 20px;
+}
+
+.inputContainer {
+    margin-top: 6px;
+}
+
+.inputTitleContainer {
+    font-weight: 600;
+    font-size: 14px; 
+    line-height: 22px;
+    color: #5F5F5F;
+}
+
+.registPhotoContainer {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-color: transparent;
+    margin-top: 6px;
+}
+
+.registPhotoContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.inputPhotoContainer {
+    flex: 0 0 auto;
+}
+
+.addPhotoButtonContainer {
+    display: flex;
+    width: 102px;
+    height: 102px;
+    border: 1px solid #E4E4E4;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.addPhotoButtonText {
+    margin-top: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    color: #777777;
+}
+
+.imageContainer {
+    flex: 0 0 auto;
+    width: 102px;
+    height: 102px;
+    border: 1px solid #E4E4E4;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    object-fit: fill;
+    transform: rotate(0);
+}
+
+.mainImageContainer {
+    position:  fixed;
+    left:  6px;
+    top:  6px;
+    padding: 1px 6px;
+    font-weight: 600;
+    font-size:  12px;
+    line-height:  18px;
+    background-color: #FFFFFF;
+    border: 1px solid #E4E4E4;
+    border-radius:  4px;
+    color: #1C1C1C;
+    gap:  10px;
+}
+
+.imageRemoveButtonContainer {
+    position: fixed;
+    right: 6px;
+    top: 6px;
+}
+
+.image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.solplaceRegisterButton {
+    width: 100%;
+    margin-top: 6px;
+    padding: 11px 16px;
+    border: 1px solid #C7C7C7;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.solplaceRegisterButtonPlaceholder {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #333333;
+
+}
+
+.solplaceRegisterButtonPlaceholder {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #ABABAB;
+
+}
+
+.introductionInput {
+    min-height: 144px;
+    border: 1px solid #C7C7C7;
+    width: 100%;
+    padding: 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    margin-top: 6px;
+
+}
+
+.introductionWarning {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    color: #ABABAB;
+}
+
+.disableRegisterButton {
+    position: fixed;
+    bottom: 40px;
+    font-weight:  700;
+    font-size: 16px;
+    line-height: 22px;
+    left: 20px;
+    right: 20px;
+    color:  #C7C7C7;
+    text-align: center;
+    padding: 13px 0px;
+    border-radius: 8px;
+    background-color: #F2F2F2;
+}
+
+.ableRegisterButton {
+    position: fixed;
+        bottom: 40px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 22px;
+        left: 20px;
+        right: 20px;
+        color: white;
+        text-align: center;
+        padding: 13px 0px;
+        border-radius: 8px;
+        background-color: #3A5CF3;
+}
